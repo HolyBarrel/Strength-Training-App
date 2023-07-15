@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using StrengthTrainingApp.Data;
 
 namespace StrengthTrainingApp;
 
@@ -22,7 +21,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		builder.Services.AddSingleton<WeatherForecastService>();
+		//builder.Services.AddSingleton<WeatherForecastService>();
 
 		return builder.Build();
 	}
