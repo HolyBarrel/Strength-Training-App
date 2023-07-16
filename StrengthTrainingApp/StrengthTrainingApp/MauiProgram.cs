@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Http;
+using StrengthTrainingApp.Services;
 
 namespace StrengthTrainingApp;
 
@@ -15,6 +17,8 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
+        builder.Services.AddSingleton<IAuthService, AuthService>();
+        builder.Services.AddHttpClient();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
