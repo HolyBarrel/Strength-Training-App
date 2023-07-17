@@ -1,11 +1,68 @@
 ﻿@page "/"
+@using StrengthTrainingApp.Services
+@inject IAuthService AuthService
 
 <div class="home-content-container">
-    <h1 class="home-header">Strength Training</h1>
+    
+        <h1 class="home-header">Strength Training</h1>
+    @if (!_loggedIn)
+    {
+        <div class="login-container">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required @bind="_email"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required @bind="_password"><br>
+            <button @onclick="Authenticate">Log in</button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(_exceptionMessage))
+        {
+            <p>@_exceptionMessage</p>
+        }
+
+
+        @if (!string.IsNullOrEmpty(_token))
+        {
+            <p>@_token</p>
+        }
+        
+    }
+    else
+    {
+    }
 
 </div>
 
 @code
 {
+    private string _token = "";
+
+    private string _email = "";
+
+    private string _password = "";
+
+    private string _exceptionMessage = "";
+
+    private bool _loggedIn = false;
+
+
+
+    private async Task Authenticate()
+    {
+        try
+        {
+            var token = await AuthService.Authenticate(_email, _password);
+            _token = token;
+            _loggedIn = true;
+        }
+        catch (Exception e)
+        {
+            _exceptionMessage = e.Message;
+        }
+        finally
+        {
+            StateHasChanged();
+        }
+    }
 
 }

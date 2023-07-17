@@ -31,15 +31,7 @@ namespace StrengthTrainingApp.Utility
 
             var responseJson = JObject.Parse(responseBody);
 
-            if (responseJson.TryGetValue("token", out var tokenValue))
-            {
-                return tokenValue.ToString();
-
-            }
-            else
-            {
-                return "";
-            }
+            return responseJson.TryGetValue("access_token", out var tokenValue) ? tokenValue.ToString() : "";
         }
     }
 }
