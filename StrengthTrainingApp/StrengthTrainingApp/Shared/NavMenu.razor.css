@@ -1,7 +1,7 @@
 .nav-item {
-    font-size: 0.8rem;
-    height: 7vh;
-    background-color: gray;
+    font-size: 0.9rem;
+    height: 5vh;
+    background-color: #0D3B66;
     width: 95%;
     align-content: center !important;
     align-items: center !important;
@@ -9,12 +9,9 @@
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
-.nav-link {
-    align-content: center !important;
-    align-items: center !important;
-}
 
 .nav-item:active {
     background-color: black;
@@ -22,13 +19,6 @@
 
 
 .nav-text {
-
     color: white;
     font-weight: bold;
-
-}
-
-
-.flex-column {
-    height: fit-content !important;
 }

@@ -12,7 +12,7 @@
             <input type="email" id="email" name="email" required @bind="_email"><br>
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password" required @bind="_password"><br>
-            <button @onclick="Authenticate">Log in</button>
+            <button class="login-button" @onclick="Authenticate">Log in</button>
         </div>
 
         @if (!string.IsNullOrEmpty(_exceptionMessage))
