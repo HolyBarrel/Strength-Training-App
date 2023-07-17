@@ -1,37 +1,31 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace StrengthTrainingApp.DataTransferObjects
 {
     public class FullWorkoutRecord
     {
-        [JsonPropertyName("workout_id")]
+        [JsonProperty("workout_id")]
         public long WorkoutId { get; set; }
 
-        [JsonPropertyName("timestamp")]
+        [JsonProperty("timestamp")]
         public DateTimeOffset Timestamp { get; set; }
 
-        [JsonPropertyName("total_load")]
+        [JsonProperty("total_load")]
         public object TotalLoad { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("muscle_group")]
+        [JsonProperty("muscle_group")]
         public string MuscleGroup { get; set; }
 
-        [JsonPropertyName("notes")]
+        [JsonProperty("notes")]
         public object Notes { get; set; }
 
-        [JsonPropertyName("reps")]
+        [JsonProperty("reps")]
         public long Reps { get; set; }
 
-        [JsonPropertyName("weight")]
+        [JsonProperty("weight")]
         public long Weight { get; set; }
 
     }

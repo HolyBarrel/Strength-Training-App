@@ -7,6 +7,8 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using StrengthTrainingApp.DataTransferObjects;
+using JsonConvert = Newtonsoft.Json.JsonConvert;
 
 namespace StrengthTrainingApp.Utility
 {
@@ -32,6 +34,12 @@ namespace StrengthTrainingApp.Utility
             var responseJson = JObject.Parse(responseBody);
 
             return responseJson.TryGetValue("access_token", out var tokenValue) ? tokenValue.ToString() : "";
+        }
+
+        public static List<FullWorkoutRecord> DeserializeWorkoutRecords(string jsonString)
+        {
+            return JsonConvert.DeserializeObject<List<FullWorkoutRecord>>(jsonString);
+
         }
     }
 }

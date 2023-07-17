@@ -1,6 +1,9 @@
 ﻿@page "/"
 @using StrengthTrainingApp.Services
+@using StrengthTrainingApp.DataTransferObjects
 @inject IAuthService AuthService
+@inject IFullWorkoutService FullWorkoutService
+@inject ISecureStorage SecureStorage
 
 <div class="home-content-container">
     
@@ -15,20 +18,20 @@
             <button class="login-button" @onclick="Authenticate">Log in</button>
         </div>
 
-        @if (!string.IsNullOrEmpty(_exceptionMessage))
-        {
-            <p>@_exceptionMessage</p>
-        }
 
-
-        @if (!string.IsNullOrEmpty(_token))
-        {
-            <p>@_token</p>
-        }
-        
     }
     else
     {
+        @if (_workouts != null)
+        {
+            <Workouts WorkoutRecords="_workouts" />
+        }
+    }
+    
+    
+    @if (!string.IsNullOrEmpty(_exceptionMessage))
+    {
+        <p>@_exceptionMessage</p>
     }
 
 </div>
@@ -45,6 +48,7 @@
 
     private bool _loggedIn = false;
 
+    private List<FullWorkoutRecord> _workouts;
 
 
     private async Task Authenticate()
@@ -54,6 +58,11 @@
             var token = await AuthService.Authenticate(_email, _password);
             _token = token;
             _loggedIn = true;
+            await SecureStorage.SetAsync("access_token", token);
+            await FullWorkoutService.Setup();
+
+            _workouts = await FullWorkoutService.GetAllFullWorkoutRecords();
+            StateHasChanged();
         }
         catch (Exception e)
         {

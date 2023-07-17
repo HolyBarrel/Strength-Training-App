@@ -18,10 +18,13 @@ public static class MauiProgram
 
 		builder.Services.AddMauiBlazorWebView();
         builder.Services.AddSingleton<IAuthService, AuthService>();
+		builder.Services.AddSingleton<IFullWorkoutService, FullWorkoutService>();
         builder.Services.AddHttpClient();
+        builder.Services.AddSingleton(SecureStorage.Default);
+
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
+        builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
 
