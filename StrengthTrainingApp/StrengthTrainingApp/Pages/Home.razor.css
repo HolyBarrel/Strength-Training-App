@@ -1,6 +1,7 @@
 ﻿.home-content-container {
     display: flex;
     flex-direction: column !important;
+    align-items: center;
 }
 
 .home-header {
@@ -11,9 +12,15 @@
     border-radius: 5px;
     margin: 6px;
     padding: 6px;
+    margin-left: 0;
 
 }
 
 .login-container input {
+    margin: 10px;
+    margin-left: 0;
+}
+
+h1 {
     margin: 10px;
 }
