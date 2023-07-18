@@ -5,6 +5,7 @@
     <tr>
         <th>Name</th>
         <th>Muscle Group</th>
+        <th>Primary Muscle</th>
         <th>Reps</th>
         <th>Weight</th>
         <th>Notes</th>
@@ -16,12 +17,13 @@
         @if (_previousId != record.WorkoutId)
         {
             <tr>
-                    <td>Workout @record.WorkoutId</td>
+                <td colspan="6">Workout @record.WorkoutId</td>
             </tr>
         }
         <tr>
             <td>@record.Name</td>
             <td>@record.MuscleGroup</td>
+            <td>@record.PrimaryMuscle</td>
             <td>@record.Reps</td>
             <td>@record.Weight</td>
             <td>@record.Notes</td>
@@ -46,8 +48,4 @@
     {
         WorkoutRecords = WorkoutRecords.OrderBy(record => record.WorkoutId).ToList();
     }
-
-
-
-   
 }

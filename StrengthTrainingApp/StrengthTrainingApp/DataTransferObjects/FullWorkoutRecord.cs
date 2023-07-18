@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace StrengthTrainingApp.DataTransferObjects
 {
@@ -11,7 +12,10 @@ namespace StrengthTrainingApp.DataTransferObjects
         public DateTimeOffset Timestamp { get; set; }
 
         [JsonProperty("total_load")]
-        public object TotalLoad { get; set; }
+        public double? TotalLoad { get; set; }
+
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -19,14 +23,13 @@ namespace StrengthTrainingApp.DataTransferObjects
         [JsonProperty("muscle_group")]
         public string MuscleGroup { get; set; }
 
-        [JsonProperty("notes")]
-        public object Notes { get; set; }
+        [JsonProperty("primary_muscle")]
+        public string PrimaryMuscle { get; set; }
 
         [JsonProperty("reps")]
         public long Reps { get; set; }
 
         [JsonProperty("weight")]
-        public long Weight { get; set; }
-
+        public double Weight { get; set; }
     }
 }
