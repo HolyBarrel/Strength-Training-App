@@ -8,5 +8,10 @@ namespace StrengthTrainingApp.Services.Interfaces
 {
     internal interface IWorkoutService
     {
+        Task<long> GetWorkoutForToday();
+
+        Task<long> CreateWorkout();
+
+
     }
 }

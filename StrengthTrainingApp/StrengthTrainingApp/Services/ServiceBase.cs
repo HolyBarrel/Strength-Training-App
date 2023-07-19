@@ -19,7 +19,7 @@ namespace StrengthTrainingApp.Services
             Client = client;
         }
 
-        public async Task Setup()
+        public virtual async Task Setup()
         {
             await HttpHelper.AuthTokenSetup(Client);
             _isSetup = true;
