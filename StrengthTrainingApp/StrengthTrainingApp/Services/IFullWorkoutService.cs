@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StrengthTrainingApp.Services
 {
-    public interface IFullWorkoutService
+    internal interface IFullWorkoutService
     {
         Task Setup();
         Task<List<FullWorkoutRecord>> GetAllFullWorkoutRecords();

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace StrengthTrainingApp.Services
 {
-    internal interface IAuthService
+    internal interface IServiceBase
     {
+        Task Setup();
 
-        Task<string> Authenticate(string email, string password);
+        void EnsureSetup();
     }
 }
