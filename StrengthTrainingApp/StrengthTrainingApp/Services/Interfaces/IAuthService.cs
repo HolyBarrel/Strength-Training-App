@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StrengthTrainingApp.Services
+namespace StrengthTrainingApp.Services.Interfaces
 {
     internal interface IAuthService
     {

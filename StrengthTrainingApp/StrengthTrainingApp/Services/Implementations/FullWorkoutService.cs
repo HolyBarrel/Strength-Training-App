@@ -6,12 +6,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using StrengthTrainingApp.Utility;
+using StrengthTrainingApp.Services.Interfaces;
 
-namespace StrengthTrainingApp.Services
+namespace StrengthTrainingApp.Services.Implementations
 {
     public class FullWorkoutService : ServiceBase, IFullWorkoutService
     {
-        public FullWorkoutService(HttpClient httpClient) : base(httpClient) {}
+        public FullWorkoutService(HttpClient httpClient) : base(httpClient) { }
 
         public async Task<List<FullWorkoutRecord>> GetAllFullWorkoutRecords()
         {

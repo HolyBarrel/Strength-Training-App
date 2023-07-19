@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Http;
-using StrengthTrainingApp.Services;
+using StrengthTrainingApp.Services.Implementations;
+using StrengthTrainingApp.Services.Interfaces;
 
 namespace StrengthTrainingApp;
 
