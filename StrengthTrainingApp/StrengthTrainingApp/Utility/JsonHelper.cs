@@ -14,6 +14,7 @@ namespace StrengthTrainingApp.Utility
 {
     public static class JsonHelper
     {
+        //TODO: make generic
         public static StringContent CreateSerializedCredentials(string email, string password)
         {
             var credentials = new Dictionary<string, string>
@@ -26,6 +27,13 @@ namespace StrengthTrainingApp.Utility
 
             return new StringContent(serializedCredentials, Encoding.UTF8, "application/json");
         }
+
+        public static StringContent SerializeContent<T>(T obj)
+        {
+            var serializedObject = JsonConvert.SerializeObject(obj);
+            return new StringContent(serializedObject, Encoding.UTF8, "application/json");
+        }
+
 
         public static async Task<string> ExtractToken(HttpResponseMessage response)
         {

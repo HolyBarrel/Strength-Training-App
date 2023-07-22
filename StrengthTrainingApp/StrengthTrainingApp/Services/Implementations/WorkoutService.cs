@@ -14,6 +14,7 @@ namespace StrengthTrainingApp.Services.Implementations
     {
         public WorkoutService(HttpClient client) : base(client) {}
 
+
         public override async Task Setup()
         {
             await base.Setup();
@@ -53,7 +54,7 @@ namespace StrengthTrainingApp.Services.Implementations
         {
             EnsureSetup(); 
             
-            var response = await Client.PostAsync("/path/to/your/workout/endpoint", null);
+            var response = await Client.PostAsync("/rest/v1/workouts?select=*", null);
 
             if (response.IsSuccessStatusCode)
             {

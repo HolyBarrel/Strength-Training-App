@@ -3,6 +3,7 @@ using System;
 
 namespace StrengthTrainingApp.DataTransferObjects
 {
+    //Credz:https://app.quicktype.io/
     public class FullWorkoutRecord
     {
         [JsonProperty("workout_id")]
