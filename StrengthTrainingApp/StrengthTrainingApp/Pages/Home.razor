@@ -50,19 +50,28 @@
 
     private List<FullWorkoutRecord> _workouts;
 
+    protected override async Task OnInitializedAsync()
+    {
+        if (await SecureStorage.GetAsync("access_token") != "")
+        {
+            _loggedIn = true;
+            await FetchFullWorkouts();
+        }
+    }
 
     private async Task Authenticate()
     {
         try
         {
-            var token = await AuthService.Authenticate(_email, _password);
-            _token = token;
-            _loggedIn = true;
-            await SecureStorage.SetAsync("access_token", token);
-            await FullWorkoutService.Setup();
-
-            _workouts = await FullWorkoutService.GetAllFullWorkoutRecords();
-            StateHasChanged();
+            if (await SecureStorage.GetAsync("access_token") == "")
+            {
+                var token = await AuthService.Authenticate(_email, _password);
+                _token = token;
+                _loggedIn = true;
+                await SecureStorage.SetAsync("access_token", token);
+                await FullWorkoutService.Setup();
+                await FetchFullWorkouts();
+            }
         }
         catch (Exception e)
         {
@@ -72,6 +81,13 @@
         {
             StateHasChanged();
         }
+    }
+
+    private async Task FetchFullWorkouts()
+    {
+        _workouts = await FullWorkoutService.GetAllFullWorkoutRecords();
+        StateHasChanged();
+        
     }
 
 }

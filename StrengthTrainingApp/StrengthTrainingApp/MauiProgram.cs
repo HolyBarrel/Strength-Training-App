@@ -20,6 +20,9 @@ public static class MauiProgram
 		builder.Services.AddMauiBlazorWebView();
         builder.Services.AddSingleton<IAuthService, AuthService>();
 		builder.Services.AddSingleton<IFullWorkoutService, FullWorkoutService>();
+        builder.Services.AddSingleton<ISetService, SetService>();
+        builder.Services.AddSingleton<IExerciseService, ExerciseService>();
+        builder.Services.AddSingleton<IWorkoutService, WorkoutService>();
         builder.Services.AddHttpClient();
         builder.Services.AddSingleton(SecureStorage.Default);
 
