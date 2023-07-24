@@ -7,32 +7,37 @@
 
 <div class="home-content-container">
     
-        <h1 class="home-header">Strength Training</h1>
-    @if (!_loggedIn)
+    <h1 class="home-header">Strength Training</h1>
+    
+    @if (_loaded)
     {
-        <div class="login-container">
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required @bind="_email"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required @bind="_password"><br>
-            <button class="login-button" @onclick="Authenticate">Log in</button>
-        </div>
-
-
-    }
-    else
-    {
-        @if (_workouts != null)
+        @if (!_loggedIn)
         {
-            <Workouts WorkoutRecords="_workouts" />
+            <div class="login-container">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required @bind="_email"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required @bind="_password"><br>
+                <button class="login-button" @onclick="Authenticate">Log in</button>
+            </div>
+
+
+        }
+        else
+        {
+            @if (_workouts != null)
+            {
+                <Workouts WorkoutRecords="_workouts"/>
+            }
+        }
+
+
+        @if (!string.IsNullOrEmpty(_exceptionMessage))
+        {
+            <p>@_exceptionMessage</p>
         }
     }
-    
-    
-    @if (!string.IsNullOrEmpty(_exceptionMessage))
-    {
-        <p>@_exceptionMessage</p>
-    }
+
 
 </div>
 
@@ -48,6 +53,8 @@
 
     private bool _loggedIn = false;
 
+    private bool _loaded = false;
+
     private List<FullWorkoutRecord> _workouts;
 
     protected override async Task OnInitializedAsync()
@@ -57,6 +64,7 @@
             _loggedIn = true;
             await FetchFullWorkouts();
         }
+        _loaded = true;
     }
 
     private async Task Authenticate()
