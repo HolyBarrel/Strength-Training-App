@@ -44,10 +44,9 @@ namespace StrengthTrainingApp.Utility
             return responseJson.TryGetValue("access_token", out var tokenValue) ? tokenValue.ToString() : "";
         }
 
-        public static List<FullWorkoutRecord> DeserializeWorkoutRecords(string jsonString)
+        public static T DeserializeContent<T>(string jsonString)
         {
-            return JsonConvert.DeserializeObject<List<FullWorkoutRecord>>(jsonString);
-
+            return JsonConvert.DeserializeObject<T>(jsonString);
         }
     }
 }

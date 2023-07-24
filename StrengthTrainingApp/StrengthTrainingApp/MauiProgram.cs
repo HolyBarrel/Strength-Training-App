@@ -23,17 +23,14 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISetService, SetService>();
         builder.Services.AddSingleton<IExerciseService, ExerciseService>();
         builder.Services.AddSingleton<IWorkoutService, WorkoutService>();
+        builder.Services.AddSingleton<IExerciseTypeService, ExerciseTypeService>();
         builder.Services.AddHttpClient();
         builder.Services.AddSingleton(SecureStorage.Default);
-
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-
-		//builder.Services.AddSingleton<WeatherForecastService>();
-
 		return builder.Build();
 	}
 }

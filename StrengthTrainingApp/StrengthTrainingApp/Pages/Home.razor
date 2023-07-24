@@ -59,11 +59,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (await SecureStorage.GetAsync("access_token") != "")
-        {
-            _loggedIn = true;
-            await FetchFullWorkouts();
-        }
+        //if (await SecureStorage.GetAsync("access_token") != "")
+        //{
+        //    _loggedIn = true;
+        //    await FetchFullWorkouts();
+        //}
         _loaded = true;
     }
 
@@ -71,15 +71,12 @@
     {
         try
         {
-            if (await SecureStorage.GetAsync("access_token") == "")
-            {
-                var token = await AuthService.Authenticate(_email, _password);
+            var token = await AuthService.Authenticate(_email, _password);
                 _token = token;
                 _loggedIn = true;
                 await SecureStorage.SetAsync("access_token", token);
                 await FullWorkoutService.Setup();
                 await FetchFullWorkouts();
-            }
         }
         catch (Exception e)
         {

@@ -18,10 +18,10 @@ namespace StrengthTrainingApp.Services.Implementations
         {
             var response = await Client.GetAsync("/rest/v1/full_workout?select=*");
 
-            if (!response.IsSuccessStatusCode) throw new Exception("The login was rejected due to invalid credentials");
+            if (!response.IsSuccessStatusCode) throw new Exception("Fetching full workout records failed =(");
 
             var jsonString = await response.Content.ReadAsStringAsync();
-            return JsonHelper.DeserializeWorkoutRecords(jsonString);
+            return JsonHelper.DeserializeContent<List<FullWorkoutRecord>>(jsonString);
 
         }
     }
